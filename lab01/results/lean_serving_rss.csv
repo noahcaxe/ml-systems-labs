@@ -1,0 +1,3 @@
+model,runtime_before_load_mib,serving_peak_rss_mib
+logistic_regression,94.9,98.4
+random_forest,94.5,106.5

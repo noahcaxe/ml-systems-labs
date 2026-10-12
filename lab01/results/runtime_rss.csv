@@ -1,5 +1,5 @@
 stage,rss_mib
-python interpreter,18.7
-+ numpy, scikit-learn,102.1
+python interpreter,19.2
++ numpy, scikit-learn,102.8
 + pandas, joblib,142.6
-+ torch,265.6
++ torch,266.0
