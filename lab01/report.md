@@ -119,23 +119,20 @@ median (1.60 ms) is 6× under the strictest limit (TinyML, 10 ms). Full per-chec
 
 ## 4. Conclusions
 
-> Draft: rewrite in your own words before submitting.
+1. **For a small table dataset, the simple model is the better choice.** Logistic Regression wins
+   against Random Forest in almost every test. It is a little more accurate (0.9474 vs 0.9357),
+   about 50 times faster when it answers (0.03 ms vs 1.60 ms) and about 275 times smaller
+   (1 KB vs 284 KB). Only its training is slower, because the data is not scaled and the solver
+   does not finish in 1000 steps.
 
-1. **The runtime, not the model, decides where a small model can be deployed.** Both models add less
-   than 1 MiB of memory, but the Python process needs 98–268 MiB depending on what is imported.
-   Importing `torch` only for seeding raises the footprint from about 100 to about 268 MiB and moves
-   both models from fitting Edge to fitting it only partially. Measuring a model without its
-   runtime would give a misleading deployment decision.
+2. **The limit is the memory of Python and its libraries, not the model.** Both models are fast
+   enough for every platform. By size, both fit Cloud, Edge and Mobile, and Logistic Regression
+   also fits TinyML; only Random Forest is too big for TinyML (284 KB, the limit is 100 KB). The
+   models themselves use less than 1 MB of memory, but the Python process uses about 100 MB with
+   only numpy and scikit-learn, and about 268 MB with torch. Because of this, in Python neither
+   model fits a small phone (64 MB) or a TinyML device; on Mobile they work only on bigger phones.
 
-2. **A higher-capacity model is not automatically better on a small tabular dataset.** Logistic
-   Regression is slightly more accurate (0.9474 vs 0.9357), 50× faster at inference and about 275×
-   smaller than the 100-tree Random Forest. It is the only one of the two that could, in principle,
-   reach TinyML. Its training is slower (0.34 s vs 0.11 s) only because the unscaled features stop
-   `lbfgs` from converging within 1000 iterations (a `ConvergenceWarning` is raised). Feature scaling
-   would likely fix both the warning and the training time.
-
-3. **The measurement protocol matters as much as the numbers.** One of the 100 Random Forest
-   inference runs took 127.6 ms, which is 80× the median and would break the Edge, Mobile and TinyML
-   latency budgets if reported alone. The median (1.60 ms) is stable against such OS-level outliers.
-   Likewise, measuring each model's memory in a separate fresh process was necessary to attribute
-   memory to the model rather than to whatever ran earlier in the same process.
+3. **We can trust the measurements only if we follow the right method.** This means a warm-up run,
+   many repeats, the median instead of one run, and a separate process for each memory test. For
+   example, one Random Forest run took 127.6 ms, which is 80 times more than the median. If we used
+   only this one run, the model would fail the Edge, Mobile and TinyML budgets.
