@@ -1,0 +1,21 @@
+# Environment
+.venv/
+
+# Datasets (downloaded by scripts)
+data/
+
+# Python
+__pycache__/
+*.pyc
+
+# MLflow / CodeCarbon artifacts
+mlruns/
+emissions.csv
+
+# Course materials
+*.pdf
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
