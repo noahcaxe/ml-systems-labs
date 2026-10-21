@@ -1,0 +1,53 @@
+Gradient check: h = 1e-05, tolerance 1e-06, need >= 9/10, batch of 32 training samples, float64
+
+init N(0, 0.01), W = 16: 6/10 pass (2 with zero gradient) -> FAILED
+param    index      analytic     numerical    rel_error  pass  grad_zero  kinks
+   W3   (8, 6)  2.304508e-05  2.304505e-05 9.955699e-07  True      False      0
+   W1 (21, 13) -4.160106e-06 -4.160094e-06 2.716061e-06 False      False      0
+   W1  (55, 5)  0.000000e+00  0.000000e+00 0.000000e+00  True       True      0
+   W2 (14, 13)  4.571373e-05  4.571372e-05 2.624802e-07  True      False      0
+   W1  (45, 9) -2.204767e-05 -2.204765e-05 9.273351e-07  True      False      0
+   W1  (57, 0) -3.425367e-06 -3.425349e-06 5.263051e-06 False      False      0
+   W1 (18, 11)  1.286491e-05  1.287681e-05 9.245464e-04 False      False      1
+   W1 (50, 13)  5.164035e-06  5.164047e-06 2.350607e-06 False      False      0
+   W1 (27, 10)  2.069619e-05  2.069618e-05 6.903074e-07  True      False      0
+   W2  (12, 1)  0.000000e+00  0.000000e+00 0.000000e+00  True       True      0
+
+init N(0, 0.01), W = 64: 7/10 pass (2 with zero gradient) -> FAILED
+param    index      analytic     numerical    rel_error  pass  grad_zero  kinks
+   W1  (5, 36) -8.077471e-05 -8.077472e-05 1.588343e-07  True      False      0
+   W1 (16, 59)  0.000000e+00  0.000000e+00 0.000000e+00  True       True      0
+   W1 (28, 43)  6.128335e-06  6.128320e-06 2.436265e-06 False      False      0
+   W2 (45, 40) -7.027490e-06 -7.027490e-06 9.459084e-08  True      False      0
+   W2   (0, 3)  0.000000e+00  0.000000e+00 0.000000e+00  True       True      0
+   W1 (27, 33) -5.134167e-05 -5.134166e-05 1.136334e-07  True      False      0
+   W3  (32, 5) -2.100640e-06 -2.100631e-06 4.345034e-06 False      False      0
+   W2 (11, 39) -2.472149e-05 -2.472151e-05 7.943685e-07  True      False      0
+   W3  (47, 6)  8.199548e-06  8.199530e-06 2.207682e-06 False      False      0
+   W1 (59, 33) -4.555700e-05 -4.555698e-05 3.682729e-07  True      False      0
+
+init he, W = 16: 10/10 pass (2 with zero gradient) -> PASSED
+param    index      analytic     numerical    rel_error  pass  grad_zero  kinks
+   W3   (8, 6)  2.521904e-02  2.521904e-02 2.986080e-10  True      False      0
+   W1 (21, 13)  8.861764e-04  8.861764e-04 3.201253e-09  True      False      0
+   W1  (55, 5)  0.000000e+00  0.000000e+00 0.000000e+00  True       True      0
+   W2 (14, 13)  3.685005e-02  3.685005e-02 8.422130e-12  True      False      0
+   W1  (45, 9) -2.930278e-02 -2.930278e-02 9.494764e-11  True      False      0
+   W1  (57, 0) -4.337065e-03 -4.337065e-03 8.050308e-10  True      False      0
+   W1 (18, 11)  1.449582e-02  1.449582e-02 1.247092e-09  True      False      0
+   W1 (50, 13)  7.710828e-03  7.710828e-03 2.712003e-10  True      False      0
+   W1 (27, 10)  2.930455e-02  2.930455e-02 9.140805e-10  True      False      0
+   W2  (12, 1)  0.000000e+00  0.000000e+00 0.000000e+00  True       True      0
+
+init he, W = 64: 10/10 pass (2 with zero gradient) -> PASSED
+param    index      analytic     numerical    rel_error  pass  grad_zero  kinks
+   W1  (5, 36) -1.858342e-02 -1.858342e-02 6.220583e-10  True      False      0
+   W1 (16, 59)  0.000000e+00  0.000000e+00 0.000000e+00  True       True      0
+   W1 (28, 43)  1.234346e-03  1.234346e-03 2.320631e-08  True      False      0
+   W2 (45, 40) -1.605506e-03 -1.605506e-03 8.145895e-09  True      False      0
+   W2   (0, 3)  0.000000e+00  0.000000e+00 0.000000e+00  True       True      0
+   W1 (27, 33) -1.861844e-02 -1.861844e-02 1.525262e-09  True      False      0
+   W3  (32, 5)  3.612355e-03  3.612355e-03 2.805113e-09  True      False      0
+   W2 (11, 39) -7.914893e-03 -7.914893e-03 7.052070e-10  True      False      0
+   W3  (47, 6)  3.067222e-03  3.067222e-03 1.930772e-09  True      False      0
+   W1 (59, 33) -1.521102e-02 -1.521102e-02 6.531459e-10  True      False      0

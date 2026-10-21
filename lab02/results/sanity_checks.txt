@@ -1,0 +1,30 @@
+Data
+  X_train (1257, 64)  X_test (540, 64)
+  Y_train (1257, 10)  Y_test (540, 10)
+  X range [0.000, 1.000]
+  train class counts [124, 127, 124, 128, 127, 127, 127, 125, 122, 126]
+  test  class counts [54, 55, 53, 55, 54, 55, 54, 54, 52, 54]
+  one-hot rows sum to 1: True
+
+W = 16  (1482 parameters)
+  W1  (64, 16)
+  b1  (16,)
+  W2  (16, 16)
+  b2  (16,)
+  W3  (16, 10)
+  b3  (10,)
+  output shape (1257, 10)
+  max |row sum - 1| = 4.44e-16  (< 1e-6: True)
+  initial train loss = 2.302586  (ln 10 = 2.302585, diff +4.29e-07)
+
+W = 64  (8970 parameters)
+  W1  (64, 64)
+  b1  (64,)
+  W2  (64, 64)
+  b2  (64,)
+  W3  (64, 10)
+  b3  (10,)
+  output shape (1257, 10)
+  max |row sum - 1| = 3.33e-16  (< 1e-6: True)
+  initial train loss = 2.302592  (ln 10 = 2.302585, diff +7.40e-06)
+
