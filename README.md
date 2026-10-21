@@ -29,6 +29,7 @@ pip install --no-deps pyarrow==16.1.0
 | Folder | Content |
 |---|---|
 | `lab01/` | Environment and first system measurements |
+| `lab02/` | A neural network from scratch in NumPy: backpropagation, gradient check, training, timing |
 | `data/` | Datasets, downloaded by scripts on first run (not tracked) |
 
 Each lab folder contains `report.md`, `src/` (code) and `results/` (generated outputs).
