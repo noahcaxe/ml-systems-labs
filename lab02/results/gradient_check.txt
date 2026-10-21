@@ -1,53 +1,80 @@
-Gradient check: h = 1e-05, tolerance 1e-06, need >= 9/10, batch of 32 training samples, float64
+Gradient check: h = 1e-05, tolerance 1e-06, need >= 9/10, batch of 32 training samples, float64, weights with non-zero gradient
+trained = init N(0, 0.01) + 50 epochs SGD lr 0.1; init = untrained N(0, 0.01); he = untrained N(0, 2/fan_in)
 
-init N(0, 0.01), W = 16: 6/10 pass (2 with zero gradient) -> FAILED
-param    index      analytic     numerical    rel_error  pass  grad_zero  kinks
-   W3   (8, 6)  2.304508e-05  2.304505e-05 9.955699e-07  True      False      0
-   W1 (21, 13) -4.160106e-06 -4.160094e-06 2.716061e-06 False      False      0
-   W1  (55, 5)  0.000000e+00  0.000000e+00 0.000000e+00  True       True      0
-   W2 (14, 13)  4.571373e-05  4.571372e-05 2.624802e-07  True      False      0
-   W1  (45, 9) -2.204767e-05 -2.204765e-05 9.273351e-07  True      False      0
-   W1  (57, 0) -3.425367e-06 -3.425349e-06 5.263051e-06 False      False      0
-   W1 (18, 11)  1.286491e-05  1.287681e-05 9.245464e-04 False      False      1
-   W1 (50, 13)  5.164035e-06  5.164047e-06 2.350607e-06 False      False      0
-   W1 (27, 10)  2.069619e-05  2.069618e-05 6.903074e-07  True      False      0
-   W2  (12, 1)  0.000000e+00  0.000000e+00 0.000000e+00  True       True      0
+trained, W = 16: 10/10 pass -> PASSED  (max rel error 7.18e-07; 883/1440 weights have a non-zero gradient)
+param    index      analytic     numerical    rel_error  pass  kinks
+   W3  (11, 3)  4.570362e-02  4.570362e-02 1.082169e-11  True      0
+   W1  (22, 1) -3.222379e-03 -3.222379e-03 9.873424e-10  True      0
+   W1  (59, 3) -8.145369e-04 -8.145369e-04 6.415196e-09  True      0
+   W3   (2, 8)  1.942307e-01  1.942307e-01 2.468687e-10  True      0
+   W1  (50, 0) -1.454150e-01 -1.454150e-01 5.380476e-11  True      0
+   W1  (60, 9) -3.400511e-02 -3.400511e-02 1.425227e-10  True      0
+   W1  (19, 8)  6.395336e-04  6.395336e-04 1.332754e-08  True      0
+   W1  (54, 4) -1.235113e-02 -1.235113e-02 1.587316e-10  True      0
+   W1 (28, 15) -4.846236e-05 -4.846237e-05 5.774626e-08  True      0
+   W2  (15, 5) -1.372424e-05 -1.372423e-05 7.181784e-07  True      0
 
-init N(0, 0.01), W = 64: 7/10 pass (2 with zero gradient) -> FAILED
-param    index      analytic     numerical    rel_error  pass  grad_zero  kinks
-   W1  (5, 36) -8.077471e-05 -8.077472e-05 1.588343e-07  True      False      0
-   W1 (16, 59)  0.000000e+00  0.000000e+00 0.000000e+00  True       True      0
-   W1 (28, 43)  6.128335e-06  6.128320e-06 2.436265e-06 False      False      0
-   W2 (45, 40) -7.027490e-06 -7.027490e-06 9.459084e-08  True      False      0
-   W2   (0, 3)  0.000000e+00  0.000000e+00 0.000000e+00  True       True      0
-   W1 (27, 33) -5.134167e-05 -5.134166e-05 1.136334e-07  True      False      0
-   W3  (32, 5) -2.100640e-06 -2.100631e-06 4.345034e-06 False      False      0
-   W2 (11, 39) -2.472149e-05 -2.472151e-05 7.943685e-07  True      False      0
-   W3  (47, 6)  8.199548e-06  8.199530e-06 2.207682e-06 False      False      0
-   W1 (59, 33) -4.555700e-05 -4.555698e-05 3.682729e-07  True      False      0
+trained, W = 64: 10/10 pass -> PASSED  (max rel error 9.21e-08; 6783/8832 weights have a non-zero gradient)
+param    index      analytic     numerical    rel_error  pass  kinks
+   W1  (5, 47) -4.453233e-03 -4.453233e-03 1.334843e-10  True      0
+   W1 (18, 48) -1.013959e-05 -1.013959e-05 9.211921e-08  True      0
+   W1 (30, 60) -1.029436e-03 -1.029436e-03 8.127204e-10  True      0
+   W2 (48, 45) -1.223180e-05 -1.223180e-05 2.697230e-08  True      0
+   W2  (6, 30) -3.276852e-03 -3.276852e-03 1.520880e-09  True      0
+   W1 (29, 57) -4.693940e-03 -4.693940e-03 2.415535e-10  True      0
+   W3  (38, 8)  1.689596e-03  1.689596e-03 2.200534e-10  True      0
+   W2 (16, 16) -7.781874e-05 -7.781874e-05 1.725838e-08  True      0
+   W3  (50, 2) -1.167486e-03 -1.167486e-03 2.418607e-10  True      0
+   W2  (1, 39) -8.107010e-03 -8.107010e-03 3.325844e-10  True      0
 
-init he, W = 16: 10/10 pass (2 with zero gradient) -> PASSED
-param    index      analytic     numerical    rel_error  pass  grad_zero  kinks
-   W3   (8, 6)  2.521904e-02  2.521904e-02 2.986080e-10  True      False      0
-   W1 (21, 13)  8.861764e-04  8.861764e-04 3.201253e-09  True      False      0
-   W1  (55, 5)  0.000000e+00  0.000000e+00 0.000000e+00  True       True      0
-   W2 (14, 13)  3.685005e-02  3.685005e-02 8.422130e-12  True      False      0
-   W1  (45, 9) -2.930278e-02 -2.930278e-02 9.494764e-11  True      False      0
-   W1  (57, 0) -4.337065e-03 -4.337065e-03 8.050308e-10  True      False      0
-   W1 (18, 11)  1.449582e-02  1.449582e-02 1.247092e-09  True      False      0
-   W1 (50, 13)  7.710828e-03  7.710828e-03 2.712003e-10  True      False      0
-   W1 (27, 10)  2.930455e-02  2.930455e-02 9.140805e-10  True      False      0
-   W2  (12, 1)  0.000000e+00  0.000000e+00 0.000000e+00  True       True      0
+init, W = 16: 4/10 pass -> FAILED  (max rel error 8.05e-06; 939/1440 weights have a non-zero gradient)
+param    index      analytic     numerical    rel_error  pass  kinks
+   W3  (11, 0)  3.266554e-05  3.266554e-05 6.352830e-08  True      0
+   W1  (25, 1) -3.408084e-06 -3.408096e-06 3.453223e-06 False      0
+   W1 (60, 15)  1.227837e-05  1.227836e-05 1.129449e-06 False      0
+   W3   (4, 1)  1.354883e-06  1.354872e-06 8.049110e-06 False      0
+   W1 (50, 13)  5.164035e-06  5.164047e-06 2.350607e-06 False      0
+   W1  (62, 8) -5.046849e-05 -5.046847e-05 3.379069e-07  True      0
+   W1 (20, 10)  4.705527e-06  4.705525e-06 4.884884e-07  True      0
+   W1  (55, 9) -1.185725e-07 -1.185718e-07 5.495200e-06 False      0
+   W1 (29, 14)  4.577434e-05  4.577434e-05 4.107017e-08  True      0
+   W3   (0, 5) -1.536876e-06 -1.536882e-06 3.814705e-06 False      0
 
-init he, W = 64: 10/10 pass (2 with zero gradient) -> PASSED
-param    index      analytic     numerical    rel_error  pass  grad_zero  kinks
-   W1  (5, 36) -1.858342e-02 -1.858342e-02 6.220583e-10  True      False      0
-   W1 (16, 59)  0.000000e+00  0.000000e+00 0.000000e+00  True       True      0
-   W1 (28, 43)  1.234346e-03  1.234346e-03 2.320631e-08  True      False      0
-   W2 (45, 40) -1.605506e-03 -1.605506e-03 8.145895e-09  True      False      0
-   W2   (0, 3)  0.000000e+00  0.000000e+00 0.000000e+00  True       True      0
-   W1 (27, 33) -1.861844e-02 -1.861844e-02 1.525262e-09  True      False      0
-   W3  (32, 5)  3.612355e-03  3.612355e-03 2.805113e-09  True      False      0
-   W2 (11, 39) -7.914893e-03 -7.914893e-03 7.052070e-10  True      False      0
-   W3  (47, 6)  3.067222e-03  3.067222e-03 1.930772e-09  True      False      0
-   W1 (59, 33) -1.521102e-02 -1.521102e-02 6.531459e-10  True      False      0
+init, W = 64: 5/10 pass -> FAILED  (max rel error 2.15e-06; 6202/8832 weights have a non-zero gradient)
+param    index      analytic     numerical    rel_error  pass  kinks
+   W1  (5, 46)  2.588676e-05  2.588678e-05 7.226594e-07  True      0
+   W1 (18, 58)  7.868243e-05  7.868244e-05 1.192147e-07  True      0
+   W1  (33, 4) -1.678399e-05 -1.678395e-05 2.095140e-06 False      0
+   W2 (50, 18)  2.361722e-05  2.361724e-05 1.058262e-06 False      0
+   W2  (5, 35)  5.084596e-06  5.084599e-06 5.732650e-07  True      0
+   W1 (29, 60)  2.805977e-05  2.805980e-05 1.129792e-06 False      0
+   W3  (40, 9) -1.666358e-05 -1.666360e-05 1.354754e-06 False      0
+   W2  (15, 4) -4.354685e-06 -4.354694e-06 2.147717e-06 False      0
+   W3  (51, 3)  1.178590e-05  1.178591e-05 7.496000e-07  True      0
+   W2  (1, 58)  3.032408e-05  3.032408e-05 2.990569e-09  True      0
+
+he, W = 16: 10/10 pass -> PASSED  (max rel error 5.28e-08; 939/1440 weights have a non-zero gradient)
+param    index      analytic     numerical    rel_error  pass  kinks
+   W3  (11, 0)  1.279172e-02  1.279172e-02 8.909754e-10  True      0
+   W1  (25, 1)  4.810898e-04  4.810899e-04 2.850355e-08  True      0
+   W1 (60, 15)  2.878929e-02  2.878929e-02 1.684549e-10  True      0
+   W3   (4, 1)  5.543748e-04  5.543748e-04 1.574913e-08  True      0
+   W1 (50, 13)  7.710828e-03  7.710828e-03 2.712003e-10  True      0
+   W1  (62, 8) -6.530111e-02 -6.530111e-02 2.824483e-10  True      0
+   W1 (20, 10)  6.780990e-03  6.780990e-03 1.570111e-09  True      0
+   W1  (55, 9) -9.179372e-05 -9.179373e-05 5.279426e-08  True      0
+   W1 (29, 14)  6.803625e-02  6.803625e-02 2.682571e-10  True      0
+   W3   (0, 5) -8.364794e-04 -8.364794e-04 2.773582e-08  True      0
+
+he, W = 64: 10/10 pass -> PASSED  (max rel error 8.20e-08; 6202/8832 weights have a non-zero gradient)
+param    index      analytic     numerical    rel_error  pass  kinks
+   W1  (5, 46)  9.470152e-03  9.470152e-03 6.433264e-10  True      0
+   W1 (18, 58) -1.416428e-03 -1.416428e-03 8.467899e-09  True      0
+   W1  (33, 4) -5.514675e-03 -5.514675e-03 1.801291e-09  True      0
+   W2 (50, 18)  6.277975e-03  6.277975e-03 3.248172e-09  True      0
+   W2  (5, 35)  1.665922e-03  1.665922e-03 7.996384e-10  True      0
+   W1 (29, 60)  1.437254e-02  1.437254e-02 7.492527e-10  True      0
+   W3  (40, 9)  8.407836e-03  8.407836e-03 1.766116e-09  True      0
+   W2  (15, 4)  1.970568e-04  1.970568e-04 8.199659e-08  True      0
+   W3  (51, 3)  3.125545e-03  3.125545e-03 5.302441e-09  True      0
+   W2  (1, 58)  1.600533e-02  1.600533e-02 2.378673e-09  True      0

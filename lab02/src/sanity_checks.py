@@ -29,18 +29,21 @@ def main():
 
     for width in WIDTHS:
         params = init_params(width, np.random.default_rng(SEED))
-        P, _ = forward(params, X_train)
-        row_err = float(np.abs(P.sum(axis=1) - 1.0).max())
-        loss = cross_entropy(P, Y_train)
-
-        assert P.shape == (X_train.shape[0], 10)
-        assert row_err < 1e-6
-
         lines.append(f"W = {width}  ({count_params(params)} parameters)")
         lines += [f"  {n:<3} {params[n].shape}" for n in PARAM_NAMES]
+
+        # forward pass on batches of several sizes: 1 sample, a training batch, all data
+        for X in (X_train[:1], X_train[:32], X_train, X_test):
+            P, _ = forward(params, X)
+            row_err = float(np.abs(P.sum(axis=1) - 1.0).max())
+            assert P.shape == (X.shape[0], 10)
+            assert row_err < 1e-6
+            lines.append(f"  input {str(X.shape):<11} -> output {str(P.shape):<11} "
+                         f"max |row sum - 1| = {row_err:.2e}  (< 1e-6: {row_err < 1e-6})")
+
+        P, _ = forward(params, X_train)
+        loss = cross_entropy(P, Y_train)
         lines += [
-            f"  output shape {P.shape}",
-            f"  max |row sum - 1| = {row_err:.2e}  (< 1e-6: {row_err < 1e-6})",
             f"  initial train loss = {loss:.6f}  (ln 10 = {math.log(10):.6f}, "
             f"diff {loss - math.log(10):+.2e})",
             "",

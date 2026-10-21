@@ -208,7 +208,7 @@ W = 64, lr = 0.001
   epoch 48  train loss 2.3025  test loss 2.3025  train acc 0.1018  test acc 0.1019
   epoch 49  train loss 2.3025  test loss 2.3025  train acc 0.1018  test acc 0.1019
   epoch 50  train loss 2.3025  test loss 2.3025  train acc 0.1018  test acc 0.1019
-  final test accuracy 0.1019  (0.2 s)
+  final test accuracy 0.1019  (0.3 s)
 
 W = 64, lr = 0.01
   epoch  1  train loss 2.3026  test loss 2.3026  train acc 0.1002  test acc 0.1000
@@ -261,7 +261,7 @@ W = 64, lr = 0.01
   epoch 48  train loss 2.3023  test loss 2.3023  train acc 0.1018  test acc 0.1019
   epoch 49  train loss 2.3023  test loss 2.3023  train acc 0.1018  test acc 0.1019
   epoch 50  train loss 2.3023  test loss 2.3023  train acc 0.1018  test acc 0.1019
-  final test accuracy 0.1019  (0.2 s)
+  final test accuracy 0.1019  (0.3 s)
 
 W = 64, lr = 0.1
   epoch  1  train loss 2.3025  test loss 2.3025  train acc 0.1002  test acc 0.1000

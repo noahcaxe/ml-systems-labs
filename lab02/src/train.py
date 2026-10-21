@@ -67,7 +67,7 @@ def train(lr, width, data, log):
             f"train acc {train_acc:.4f}  test acc {test_acc:.4f}")
     seconds = time.perf_counter() - start
     assert accuracy(params, X_test, y_test) == test_acc
-    return history, seconds
+    return history, seconds, params
 
 
 def direct_labels(ax, ends, min_gap):
@@ -154,7 +154,7 @@ def main():
     for width in WIDTHS:
         for lr in LEARNING_RATES:
             log(f"W = {width}, lr = {lr}")
-            history, seconds = train(lr, width, data, log)
+            history, seconds, _ = train(lr, width, data, log)
             rows += history
             last = history[-1]
             finals.append({**{k: last[k] for k in ("width", "lr", "train_loss", "test_loss",
