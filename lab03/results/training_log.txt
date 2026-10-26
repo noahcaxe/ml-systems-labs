@@ -1,0 +1,21 @@
+MLP       epoch 1  loss 0.4919  val 0.8434  10.4s
+MLP       epoch 2  loss 0.3545  val 0.8614  10.8s
+MLP       epoch 3  loss 0.3134  val 0.8728  9.6s
+MLP       epoch 4  loss 0.2903  val 0.8792  9.3s
+MLP       epoch 5  loss 0.2689  val 0.8830  9.5s
+MLP: test accuracy 0.8789
+
+CNN       epoch 1  loss 0.5295  val 0.8484  11.5s
+CNN       epoch 2  loss 0.3510  val 0.8708  10.7s
+CNN       epoch 3  loss 0.3049  val 0.8882  11.0s
+CNN       epoch 4  loss 0.2794  val 0.8848  10.3s
+CNN       epoch 5  loss 0.2625  val 0.8974  9.9s
+CNN: test accuracy 0.8925
+
+Attention epoch 1  loss 0.7670  val 0.8132  13.0s
+Attention epoch 2  loss 0.4743  val 0.8274  13.2s
+Attention epoch 3  loss 0.4149  val 0.8560  13.0s
+Attention epoch 4  loss 0.3804  val 0.8566  13.6s
+Attention epoch 5  loss 0.3625  val 0.8674  13.7s
+Attention: test accuracy 0.8598
+

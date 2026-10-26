@@ -1,0 +1,4 @@
+model,val_acc,test_acc,train_s
+MLP,0.883,0.8789,49.5431
+CNN,0.8974,0.8925,53.4399
+Attention,0.8674,0.8598,66.5088
