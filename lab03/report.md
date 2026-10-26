@@ -106,8 +106,25 @@ ReLU, max-pooling, the position-embedding add, softmax, LayerNorm, mean pooling.
 
 ### 3.3 Hand count vs profilers
 
-From [`flops_compare.csv`](results/flops_compare.csv). thop returns **MACs**, not FLOPs, despite
-being called a FLOP counter, so its numbers are compared with the hand MACs.
+First, the short version. I counted the FLOPs by hand and then ran `thop.profile` on one image:
+
+| Model | My hand FLOPs | thop (MACs) | thop × 2 = FLOPs | Match |
+|---|---|---|---|---|
+| MLP | 469 504 | 234 752 | 469 504 | yes |
+| CNN | 2 063 488 | 1 031 744 | 2 063 488 | yes |
+| Attention | 2 329 856 | 50 816 | 101 632 | no, only 4.4 % |
+
+thop reports MACs, not FLOPs, so I multiplied its numbers by 2. For the MLP and the CNN the
+result is exactly my hand count. For the Attention model thop only counted the patch embedding and
+the classification head. In inference mode PyTorch runs each Transformer encoder layer as one
+fused operator, so thop's per-module hooks never see the layers inside it, and thop has no rule
+for `nn.MultiheadAttention` at all. So the encoder, which is 96 % of the work, is counted as zero.
+My hand count is a simple estimate. I only counted the multiply-accumulates of matrix products and
+convolutions. Where it does not agree with a tool, part of the difference may also be a
+miscalculation on my side, so I checked the gaps below step by step.
+
+The detailed comparison is in [`flops_compare.csv`](results/flops_compare.csv). The columns
+compare thop in **MACs** with my hand MACs:
 
 | Model | Hand MACs | thop default | thop, fast path off | thop + MHA rule | torch FlopCounter (FLOPs) | Hand FLOPs |
 |---|---|---|---|---|---|---|
