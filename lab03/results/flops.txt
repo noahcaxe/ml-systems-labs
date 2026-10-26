@@ -1,0 +1,42 @@
+Hand-calculated cost per layer, one image (MACs; FLOPs = 2 x MACs)
+
+    model              layer      kind                          formula   macs  params   flops
+      MLP                fc1    Linear                        784 x 256 200704  200960  401408
+      MLP                fc2    Linear                        256 x 128  32768   32896   65536
+      MLP                fc3    Linear                         128 x 10   1280    1290    2560
+      CNN              conv1    Conv2d           3x3 x 1 x 16 x 28 x 28 112896     160  225792
+      CNN              conv2    Conv2d          3x3 x 16 x 32 x 14 x 14 903168    4640 1806336
+      CNN                 fc    Linear                        1568 x 10  15680   15690   31360
+Attention        patch_embed    Linear                     16 x 49 x 64  50176    3200  100352
+Attention          pos_embed       Add                                -      0    1024       0
+Attention      enc1.qkv_proj Attention                   16 x 64 x 3*64 196608   12480  393216
+Attention   enc1.scores QK^T Attention 16^2 x 64  (4 heads x 16^2 x 16)  16384       0   32768
+Attention   enc1.weights x V Attention                        16^2 x 64  16384       0   32768
+Attention      enc1.out_proj Attention                     16 x 64 x 64  65536    4160  131072
+Attention   enc1.ffn.linear1    Linear                    16 x 64 x 128 131072    8320  262144
+Attention   enc1.ffn.linear2    Linear                    16 x 128 x 64 131072    8256  262144
+Attention enc1.2 x LayerNorm      Norm                                -      0     256       0
+Attention      enc2.qkv_proj Attention                   16 x 64 x 3*64 196608   12480  393216
+Attention   enc2.scores QK^T Attention 16^2 x 64  (4 heads x 16^2 x 16)  16384       0   32768
+Attention   enc2.weights x V Attention                        16^2 x 64  16384       0   32768
+Attention      enc2.out_proj Attention                     16 x 64 x 64  65536    4160  131072
+Attention   enc2.ffn.linear1    Linear                    16 x 64 x 128 131072    8320  262144
+Attention   enc2.ffn.linear2    Linear                    16 x 128 x 64 131072    8256  262144
+Attention enc2.2 x LayerNorm      Norm                                -      0     256       0
+Attention               head    Linear                          64 x 10    640     650    1280
+
+Model totals vs profilers (thop columns are MACs, FlopCounter is FLOPs)
+
+model                       MLP      CNN  Attention
+params_torchinfo         235146    20490      71818
+params_thop              235146    20490       3850
+hand_macs                234752  1031744    1164928
+hand_flops               469504  2063488    2329856
+thop_default             234752  1031744      50816
+thop_no_fastpath         234752  1031744     591488
+thop_mha_rule            234752  1031744    1181312
+torch_flopcounter_flops  469504  2063488    2198784
+weight_bytes             940584    81960     287272
+activation_bytes           1576    75304      98344
+intensity_b1                0.5    13.12       6.04
+intensity_b128            52.61    27.17      23.16

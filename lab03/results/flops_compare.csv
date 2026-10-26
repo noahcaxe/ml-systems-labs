@@ -1,0 +1,4 @@
+model,params_torchinfo,params_thop,hand_macs,hand_flops,thop_default,thop_no_fastpath,thop_mha_rule,torch_flopcounter_flops,weight_bytes,activation_bytes,intensity_b1,intensity_b128
+MLP,235146,235146,234752,469504,234752,234752,234752,469504,940584,1576,0.5,52.61
+CNN,20490,20490,1031744,2063488,1031744,1031744,1031744,2063488,81960,75304,13.12,27.17
+Attention,71818,3850,1164928,2329856,50816,591488,1181312,2198784,287272,98344,6.04,23.16
