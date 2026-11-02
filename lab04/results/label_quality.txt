@@ -1,0 +1,68 @@
+(a) Duplicate-conflict audit (identical 14 features, different income)
+  full data : 5 groups, 10 rows (0.020% of 48842)
+  train     : 2 groups, 4 rows (after exact-duplicate removal; they stay in train)
+  all groups: results/label_conflicts.csv
+
+| row | age | workclass | fnlwgt | education | occupation | sex | hours-per-week | income |
+|---|---|---|---|---|---|---|---|---|
+| 45787 | 34 | Private | 169583 | Masters | Exec-managerial | Female | 50 | <=50K |
+| 2373 | 34 | Private | 169583 | Masters | Exec-managerial | Female | 50 | >50K |
+| 17129 | 39 | Private | 138192 | Bachelors | Craft-repair | Male | 40 | <=50K |
+| 39042 | 39 | Private | 138192 | Bachelors | Craft-repair | Male | 40 | >50K |
+| 11692 | 41 | Private | 242804 | HS-grad | Transport-moving | Male | 40 | <=50K |
+| 16161 | 41 | Private | 242804 | HS-grad | Transport-moving | Male | 40 | >50K |
+| 27210 | 46 | Private | 224559 | HS-grad | Transport-moving | Male | 40 | <=50K |
+| 15802 | 46 | Private | 224559 | HS-grad | Transport-moving | Male | 40 | >50K |
+| 1781 | 46 | Private | 235646 | HS-grad | Craft-repair | Male | 40 | <=50K |
+| 32964 | 46 | Private | 235646 | HS-grad | Craft-repair | Male | 40 | >50K |
+
+(b) 50 random rows (random_state=42) against the data dictionary
+  rows with any violation : 0 / 50
+  rows in a conflict group: 0 / 50
+  rows: results/label_audit_sample.csv (columns 'violations', 'in_conflict_group')
+
+| rule | sample (50) | full (48842) |
+|---|---|---|
+| hard: age in [17, 90] | 0 | 0 |
+| hard: hours-per-week in [1, 99] | 0 | 0 |
+| hard: capital-gain in [0, 99999] | 0 | 0 |
+| hard: capital-loss in [0, 4356] | 0 | 0 |
+| hard: workclass allowed | 0 | 0 |
+| hard: education allowed | 0 | 0 |
+| hard: marital-status allowed | 0 | 0 |
+| hard: occupation allowed | 0 | 0 |
+| hard: relationship allowed | 0 | 0 |
+| hard: race allowed | 0 | 0 |
+| hard: sex allowed | 0 | 0 |
+| hard: native-country allowed | 0 | 0 |
+| hard: income allowed | 0 | 0 |
+| hard: education-num = code(education) | 0 | 0 |
+| plaus: Husband is Male | 0 | 1 |
+| plaus: Wife is Female | 0 | 3 |
+| plaus: Husband/Wife is married | 0 | 0 |
+| plaus: Never-worked has 0 hours | 0 | 10 |
+| plaus: Bachelors+ needs age >= 21 | 0 | 5 |
+| plaus: not both capital gain and loss | 0 | 0 |
+
+Rows that break a plausibility rule in the full data:
+| row | age | workclass | education | marital-status | occupation | relationship | sex | hours-per-week | income |
+|---|---|---|---|---|---|---|---|---|---|
+| 5661 | 64 | Local-gov | 10th | Married-civ-spouse | Machine-op-inspct | Wife | Male | 40 | <=50K |
+| 8785 | 17 | Never-worked | 11th | Never-married | ? | Own-child | Female | 20 | <=50K |
+| 11607 | 20 | Never-worked | HS-grad | Married-spouse-absent | ? | Other-relative | Male | 35 | <=50K |
+| 13898 | 18 | Never-worked | 11th | Never-married | ? | Own-child | Male | 35 | <=50K |
+| 16856 | 29 | Private | Bachelors | Married-civ-spouse | Exec-managerial | Wife | Male | 40 | >50K |
+| 17851 | 19 | ? | Bachelors | Never-married | ? | Own-child | Female | 40 | <=50K |
+| 19872 | 19 | Private | Bachelors | Never-married | Prof-specialty | Own-child | Female | 30 | <=50K |
+| 21642 | 18 | Never-worked | 10th | Never-married | ? | Own-child | Male | 40 | <=50K |
+| 23390 | 34 | Private | HS-grad | Married-civ-spouse | Sales | Husband | Female | 40 | <=50K |
+| 24696 | 20 | Private | Bachelors | Never-married | Sales | Other-relative | Female | 30 | <=50K |
+| 27126 | 23 | Never-worked | 7th-8th | Divorced | ? | Not-in-family | Male | 35 | <=50K |
+| 28464 | 18 | Local-gov | Masters | Never-married | Prof-specialty | Own-child | Female | 60 | <=50K |
+| 31053 | 17 | Never-worked | 10th | Never-married | ? | Own-child | Male | 30 | <=50K |
+| 36618 | 18 | Never-worked | 11th | Never-married | ? | Own-child | Female | 10 | <=50K |
+| 39513 | 20 | Never-worked | Some-college | Never-married | ? | Own-child | Male | 40 | <=50K |
+| 43422 | 36 | Private | Bachelors | Married-civ-spouse | Sales | Wife | Male | 60 | <=50K |
+| 47333 | 20 | Private | Masters | Never-married | Exec-managerial | Own-child | Male | 25 | <=50K |
+| 48585 | 30 | Never-worked | HS-grad | Married-civ-spouse | ? | Wife | Female | 40 | <=50K |
+| 48595 | 18 | Never-worked | Some-college | Never-married | ? | Own-child | Male | 4 | <=50K |
