@@ -1,0 +1,16 @@
+train 34165 rows (deduplicated), test 14653 rows; positive class '>50K'
+
+| variant | n_features | test_accuracy | test_f1 | cv_accuracy | cv_accuracy_std | cv_f1 | cv_f1_std | cv_paired_d_f1 | folds_f1_better |
+|---|---|---|---|---|---|---|---|---|---|
+| without derived | 105 | 0.854 | 0.6601 | 0.8507 | 0.0037 | 0.6552 | 0.0118 | 0.0 | 0 |
+| + capital_net | 106 | 0.8542 | 0.661 | 0.8508 | 0.004 | 0.6554 | 0.0124 | 0.0002 | 2 |
+| + hours_per_age | 106 | 0.8576 | 0.6694 | 0.8527 | 0.0044 | 0.6615 | 0.0126 | 0.0063 | 5 |
+| + both | 107 | 0.8578 | 0.6696 | 0.8528 | 0.0046 | 0.6618 | 0.0129 | 0.0065 | 5 |
+
+Change against 'without derived' on test:
+| variant | d_test_accuracy | d_test_f1 |
+|---|---|---|
+| without derived | 0.0 | 0.0 |
+| + capital_net | 0.0002 | 0.0009 |
+| + hours_per_age | 0.0036 | 0.0093 |
+| + both | 0.0038 | 0.0095 |
