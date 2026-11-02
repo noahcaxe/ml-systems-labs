@@ -1,0 +1,41 @@
+check,column,violations,status,note
+columns,*,0,PASS,missing=[] extra=[]
+type:int,age,0,PASS,dtype=int64
+type:category,workclass,0,PASS,dtype=object
+allowed_values,workclass,0,PASS,9 allowed incl. '?'
+missing ('?'),workclass,2799,INFO,"5.73% of rows; allowed, imputed later"
+type:int,fnlwgt,0,PASS,dtype=int64
+type:category,education,0,PASS,dtype=object
+allowed_values,education,0,PASS,17 allowed incl. '?'
+missing ('?'),education,0,INFO,"0.00% of rows; allowed, imputed later"
+type:int,education-num,0,PASS,dtype=int64
+type:category,marital-status,0,PASS,dtype=object
+allowed_values,marital-status,0,PASS,8 allowed incl. '?'
+missing ('?'),marital-status,0,INFO,"0.00% of rows; allowed, imputed later"
+type:category,occupation,0,PASS,dtype=object
+allowed_values,occupation,0,PASS,15 allowed incl. '?'
+missing ('?'),occupation,2809,INFO,"5.75% of rows; allowed, imputed later"
+type:category,relationship,0,PASS,dtype=object
+allowed_values,relationship,0,PASS,7 allowed incl. '?'
+missing ('?'),relationship,0,INFO,"0.00% of rows; allowed, imputed later"
+type:category,race,0,PASS,dtype=object
+allowed_values,race,0,PASS,6 allowed incl. '?'
+missing ('?'),race,0,INFO,"0.00% of rows; allowed, imputed later"
+type:category,sex,0,PASS,dtype=object
+allowed_values,sex,0,PASS,3 allowed incl. '?'
+missing ('?'),sex,0,INFO,"0.00% of rows; allowed, imputed later"
+type:int,capital-gain,0,PASS,dtype=int64
+type:int,capital-loss,0,PASS,dtype=int64
+type:int,hours-per-week,0,PASS,dtype=int64
+type:category,native-country,0,PASS,dtype=object
+allowed_values,native-country,0,PASS,42 allowed incl. '?'
+missing ('?'),native-country,857,INFO,"1.75% of rows; allowed, imputed later"
+type:category,income,0,PASS,dtype=object
+allowed_values,income,0,PASS,2 allowed
+range,age,0,PASS,"[17, 90]"
+range,hours-per-week,0,PASS,"[1, 99]"
+range,capital-gain,0,PASS,"[0, 99999]"
+range,capital-loss,0,PASS,"[0, 4356]"
+dictionary:education-num,education-num,0,PASS,must equal the code of education
+label_not_missing,income,0,PASS,
+exact_duplicates,*,52,INFO,kept here; dropped from train only in clean.py

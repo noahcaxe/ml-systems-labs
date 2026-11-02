@@ -60,6 +60,14 @@ def sha256_file(path):
     return h.hexdigest()
 
 
+def md_table(df):
+    """A pipe table without the optional tabulate dependency of DataFrame.to_markdown."""
+    cells = df.astype(object).where(df.notna(), "").astype(str)
+    lines = ["| " + " | ".join(map(str, df.columns)) + " |", "|" + "---|" * df.shape[1]]
+    lines += ["| " + " | ".join(row) + " |" for row in cells.to_numpy()]
+    return "\n".join(lines)
+
+
 def write_text(name, text):
     RESULTS_DIR.mkdir(exist_ok=True)
     (RESULTS_DIR / name).write_text(text, encoding="utf-8")
