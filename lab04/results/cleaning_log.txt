@@ -1,0 +1,49 @@
+split            : stratified on income, test_size=0.3, random_state=42
+train after split: 34189  (0.2394 positive after dedupe)
+test             : 14653  (0.2393 positive), untouched
+exact duplicates dropped from train: 24  -> train 34165
+exact duplicates left in test      : 5 (by design)
+
+Learned on train only (asserted); full_data_* = what a fit on all 48842 rows would learn:
+| column | kind | impute | clip_low | clip_high | full_data_impute | full_data_clip_low | full_data_clip_high |
+|---|---|---|---|---|---|---|---|
+| age | numeric | 37 | 17 | 74 | 37 | 17 | 74 |
+| fnlwgt | numeric | 178272 | 27035.2 | 509629 | 178144 | 27166 | 509484 |
+| education-num | numeric | 10 | 3 | 16 | 10 | 3 | 16 |
+| capital-gain | numeric | 0 | 0 | 15024 | 0 | 0 | 15024 |
+| capital-loss | numeric | 0 | 0 | 1980 | 0 | 0 | 2001 |
+| hours-per-week | numeric | 40 | 8 | 80 | 40 | 8 | 80 |
+| workclass | categorical | Private |  |  | Private |  |  |
+| education | categorical | HS-grad |  |  | HS-grad |  |  |
+| marital-status | categorical | Married-civ-spouse |  |  | Married-civ-spouse |  |  |
+| occupation | categorical | Prof-specialty |  |  | Prof-specialty |  |  |
+| relationship | categorical | Husband |  |  | Husband |  |  |
+| race | categorical | White |  |  | White |  |  |
+| sex | categorical | Male |  |  | Male |  |  |
+| native-country | categorical | United-States |  |  | United-States |  |  |
+
+Values clipped to the train bounds:
+| column | train | test |
+|---|---|---|
+| age | 302 | 143 |
+| fnlwgt | 683 | 272 |
+| education-num | 240 | 88 |
+| capital-gain | 255 | 136 |
+| capital-loss | 340 | 151 |
+| hours-per-week | 537 | 236 |
+
+Missing ('?') categorical cells imputed with the train mode:
+| column | train | test |
+|---|---|---|
+| workclass | 1923 | 873 |
+| education | 0 | 0 |
+| marital-status | 0 | 0 |
+| occupation | 1933 | 873 |
+| relationship | 0 | 0 |
+| race | 0 | 0 |
+| sex | 0 | 0 |
+| native-country | 590 | 267 |
+
+processed train  : (34165, 18), columns row_id, age, fnlwgt, education-num, capital-gain, capital-loss, hours-per-week, workclass, education, marital-status, occupation, relationship, race, sex, native-country, capital_net, hours_per_age, income
+processed test   : (14653, 18)
+saved            : results/preprocessor.joblib, data/adult/processed/{train,test}.csv

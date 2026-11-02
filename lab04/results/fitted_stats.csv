@@ -1,0 +1,15 @@
+column,kind,impute,clip_low,clip_high,full_data_impute,full_data_clip_low,full_data_clip_high
+age,numeric,37.0,17.0,74.0,37.0,17.0,74.0
+fnlwgt,numeric,178272.0,27035.2,509629.0,178144.5,27166.0,509484.41999999987
+education-num,numeric,10.0,3.0,16.0,10.0,3.0,16.0
+capital-gain,numeric,0.0,0.0,15024.0,0.0,0.0,15024.0
+capital-loss,numeric,0.0,0.0,1980.0,0.0,0.0,2001.0
+hours-per-week,numeric,40.0,8.0,80.0,40.0,8.0,80.0
+workclass,categorical,Private,,,Private,,
+education,categorical,HS-grad,,,HS-grad,,
+marital-status,categorical,Married-civ-spouse,,,Married-civ-spouse,,
+occupation,categorical,Prof-specialty,,,Prof-specialty,,
+relationship,categorical,Husband,,,Husband,,
+race,categorical,White,,,White,,
+sex,categorical,Male,,,Male,,
+native-country,categorical,United-States,,,United-States,,
